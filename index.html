@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VNLI PoV Demo - Experience Sarah's Journey</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/screens.css">
+    <link rel="stylesheet" href="styles/animations.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Landing Page -->
+        <div id="landing" class="screen active">
+            <div class="landing-container">
+                <div class="hero-section">
+                    <h1 class="hero-title">Experience Sarah's Day</h1>
+                    <p class="hero-subtitle">A VMware Administrator's Journey</p>
+                    <p class="hero-description">Click through her actual screens - before and after VNLI</p>
+                    
+                    <div class="context-alert">
+                        <div class="alert-icon">⚠️</div>
+                        <div class="alert-text">
+                            <strong>3:17 AM</strong> - Critical VM performance alert received
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="journey-selection">
+                    <button id="start-before" class="journey-btn journey-before">
+                        <div class="btn-title">Experience Current Pain</div>
+                        <div class="btn-subtitle">The 4-hour nightmare</div>
+                    </button>
+                    
+                    <button id="start-after" class="journey-btn journey-after">
+                        <div class="btn-title">Experience VNLI Solution</div>
+                        <div class="btn-subtitle">The 4-minute resolution</div>
+                    </div>
+                </div>
+                
+                <div class="comparison-stats">
+                    <div class="stat">
+                        <div class="stat-number">3h 45m</div>
+                        <div class="stat-label">Time Saved</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">$608</div>
+                        <div class="stat-label">Cost Saved</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Faster Resolution</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Before Journey Screens -->
+        <div id="before-1" class="screen before-screen">
+            <div class="screen-container">
+                <div class="screen-header">
+                    <div class="journey-indicator">The Current Nightmare</div>
+                    <div class="time-stamp">3:17 AM</div>
+                </div>
+                
+                <div class="phone-mockup">
+                    <div class="notification">
+                        <div class="notification-header">
+                            <div class="app-icon">📱</div>
+                            <div class="notification-title">VMware Alert</div>
+                            <div class="notification-time">now</div>
+                        </div>
+                        <div class="notification-body">
+                            <strong>CRITICAL: Production VM cluster CPU > 95%</strong><br>
+                            Cluster: PROD-CLUSTER-01<br>
+                            Affected VMs: 15 critical services
+                        </div>
+                    </div>
+                    <div class="phone-caption">Sarah's phone buzzes at 3:17 AM</div>
+                </div>
+                
+                <div class="screen-navigation">
+                    <button class="nav-btn" id="back-to-landing">← Back to Start</button>
+                    <div class="progress-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <button class="nav-btn" id="next-before">Next →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- After Journey Screens -->
+        <div id="after-1" class="screen after-screen">
+            <div class="screen-container">
+                <div class="screen-header">
+                    <div class="journey-indicator">The VNLI Transformation</div>
+                    <div class="time-stamp">3:17 AM</div>
+                </div>
+                
+                <div class="phone-mockup">
+                    <div class="notification">
+                        <div class="notification-header">
+                            <div class="app-icon">📱</div>
+                            <div class="notification-title">VMware Alert</div>
+                            <div class="notification-time">now</div>
+                        </div>
+                        <div class="notification-body">
+                            <strong>CRITICAL: Production VM cluster CPU > 95%</strong><br>
+                            Cluster: PROD-CLUSTER-01<br>
+                            Affected VMs: 15 critical services
+                        </div>
+                    </div>
+                    <div class="phone-caption">Sarah's phone buzzes at 3:17 AM<br><strong>But now she has VNLI...</strong></div>
+                </div>
+                
+                <div class="screen-navigation">
+                    <button class="nav-btn" id="back-to-landing-after">← Back to Start</button>
+                    <div class="progress-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <button class="nav-btn" id="next-after">Next →</button>
+                </div>
+                
+                <div class="journey-switch">
+                    <button id="switch-to-before" class="switch-btn">
+                        See how the old way handles this scenario →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ROI Calculator Overlay -->
+        <div id="roi-overlay" class="roi-overlay hidden">
+            <div class="roi-content">
+                <button class="roi-close">&times;</button>
+                <h3>ROI Impact Calculator</h3>
+                <div class="roi-metrics">
+                    <div class="roi-metric">
+                        <div class="roi-value" id="time-saved">3h 41m</div>
+                        <div class="roi-label">Time Saved per Incident</div>
+                    </div>
+                    <div class="roi-metric">
+                        <div class="roi-value" id="cost-saved">$608</div>
+                        <div class="roi-label">Cost Saved per Incident</div>
+                    </div>
+                    <div class="roi-metric">
+                        <div class="roi-value" id="annual-impact">$158,400</div>
+                        <div class="roi-label">Annual Impact (Your Team)</div>
+                    </div>
+                </div>
+                <div class="roi-calculator">
+                    <h4>Calculate Your Savings</h4>
+                    <div class="calculator-inputs">
+                        <div class="input-group">
+                            <label for="incidents-per-month">Critical Incidents per Month:</label>
+                            <input type="number" id="incidents-per-month" value="10" min="1" max="100">
+                        </div>
+                        <div class="input-group">
+                            <label for="hourly-rate">IT Hourly Rate ($):</label>
+                            <input type="number" id="hourly-rate" value="85" min="50" max="200">
+                        </div>
+                        <div class="input-group">
+                            <label for="team-size">Team Size:</label>
+                            <input type="number" id="team-size" value="5" min="1" max="50">
+                        </div>
+                    </div>
+                    <div class="calculator-results">
+                        <div class="result-row">
+                            <span>Monthly Savings:</span>
+                            <span id="monthly-savings">$31,680</span>
+                        </div>
+                        <div class="result-row total">
+                            <span>Annual Savings:</span>
+                            <span id="annual-savings">$380,160</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="roi-share-btn">📤 Share Results</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/navigation.js"></script>
+    <script src="scripts/animations.js"></script>
+</body>
+</html>

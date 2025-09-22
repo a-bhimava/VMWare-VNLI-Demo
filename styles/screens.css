@@ -1,0 +1,867 @@
+/* Screen-specific Styles */
+
+/* Phone Mockup */
+.phone-mockup {
+    background: #000;
+    border-radius: 30px;
+    padding: 2rem;
+    max-width: 400px;
+    margin: 0 auto 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.phone-mockup::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: #333;
+    border-radius: 2px;
+}
+
+.notification {
+    background: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 1rem;
+}
+
+.notification-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.app-icon {
+    font-size: 1.2rem;
+}
+
+.notification-title {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.notification-time {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.notification-body {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--text-primary);
+}
+
+.phone-caption {
+    text-align: center;
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* vCenter Interface Mockup */
+.vcenter-mockup {
+    background: var(--vmware-dark-blue);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.vcenter-header {
+    background: #1a202c;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.vcenter-logo {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--vmware-blue);
+}
+
+.vcenter-user {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.vcenter-body {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    min-height: 400px;
+}
+
+.vcenter-sidebar {
+    background: #1a202c;
+    padding: 1rem;
+    border-right: 1px solid var(--border-color);
+}
+
+.sidebar-section {
+    margin-bottom: 1rem;
+}
+
+.sidebar-title {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-item {
+    padding: 0.5rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+    transition: background 0.2s ease;
+}
+
+.sidebar-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-item.active {
+    background: var(--vmware-blue);
+}
+
+.vcenter-main {
+    padding: 1rem;
+}
+
+.vcenter-alerts {
+    margin-bottom: 2rem;
+}
+
+.alert-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    border-left: 4px solid var(--alert-critical-border);
+    background: var(--alert-critical);
+    color: #1a202c;
+}
+
+.alert-icon {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+.alert-content {
+    flex: 1;
+}
+
+.alert-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.alert-details {
+    font-size: 0.9rem;
+    color: #4a5568;
+}
+
+/* Terminal Mockup */
+.terminal-mockup {
+    background: #000;
+    color: #00ff00;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    margin: 2rem auto;
+    max-width: 800px;
+}
+
+.terminal-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #333;
+}
+
+.terminal-dots {
+    display: flex;
+    gap: 0.5rem;
+    margin-right: 1rem;
+}
+
+.terminal-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.terminal-dot.red { background: #ff5f56; }
+.terminal-dot.yellow { background: #ffbd2e; }
+.terminal-dot.green { background: #27ca3f; }
+
+.terminal-title {
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.terminal-prompt {
+    color: #00ff00;
+    margin-right: 0.5rem;
+}
+
+.terminal-command {
+    color: #fff;
+}
+
+.terminal-output {
+    color: #ff6b6b;
+    margin: 0.5rem 0;
+}
+
+.terminal-line {
+    margin: 0.5rem 0;
+    line-height: 1.4;
+}
+
+/* VNLI Interface Mockup */
+.vnli-interface {
+    background: var(--vnli-primary);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid var(--vnli-glass-border);
+}
+
+.vnli-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.vnli-logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.vnli-subtitle {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+}
+
+.chat-interface {
+    background: var(--vnli-glass);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid var(--vnli-glass-border);
+    margin-bottom: 1rem;
+}
+
+.chat-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.message-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.message-content {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 12px;
+    color: white;
+}
+
+.message-user .message-content {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.chat-input {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.chat-input input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--vnli-glass-border);
+    border-radius: 25px;
+    padding: 1rem 1.5rem;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+}
+
+.chat-input input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chat-send-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.chat-send-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* AI Analysis Display */
+.ai-analysis {
+    background: var(--bg-light);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    border: 1px solid var(--border-color);
+}
+
+.analysis-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.analysis-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--vnli-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.analysis-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.analysis-progress {
+    width: 100%;
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--vnli-primary);
+    width: 0%;
+    transition: width 2s ease;
+    border-radius: 4px;
+}
+
+.analysis-results {
+    display: grid;
+    gap: 1rem;
+}
+
+.result-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(0, 145, 218, 0.1);
+    border-radius: 8px;
+    border-left: 4px solid var(--vmware-blue);
+}
+
+.result-icon {
+    font-size: 1.2rem;
+}
+
+.result-content {
+    flex: 1;
+}
+
+.result-title {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.result-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* ROI Overlay */
+.roi-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.roi-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.roi-content {
+    background: var(--bg-light);
+    border-radius: 16px;
+    padding: 3rem;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    border: 1px solid var(--border-color);
+}
+
+.roi-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.roi-close:hover {
+    color: var(--text-primary);
+}
+
+.roi-content h3 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: var(--text-primary);
+}
+
+.roi-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+}
+
+.roi-metric {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(0, 145, 218, 0.1);
+    border-radius: 12px;
+    border: 1px solid var(--vmware-blue);
+}
+
+.roi-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--vmware-green);
+    margin-bottom: 0.5rem;
+}
+
+.roi-label {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+/* ROI Calculator Styles */
+.roi-calculator {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.roi-calculator h4 {
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.calculator-inputs {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.input-group input {
+    background: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.75rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: var(--vmware-blue);
+}
+
+.calculator-results {
+    background: rgba(0, 145, 218, 0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    color: var(--text-primary);
+}
+
+.result-row.total {
+    border-top: 1px solid var(--border-color);
+    margin-top: 1rem;
+    padding-top: 1rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.result-row.total span:last-child {
+    color: var(--vmware-green);
+    font-size: 1.3rem;
+}
+
+.roi-share-btn {
+    width: 100%;
+    background: var(--vmware-blue);
+    border: none;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.roi-share-btn:hover {
+    background: var(--vmware-dark-blue);
+    transform: translateY(-2px);
+}
+
+/* Screen Content Areas */
+.screen-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.content-main {
+    width: 100%;
+    max-width: 1000px;
+}
+
+.screen-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.screen-subtitle {
+    font-size: 1.2rem;
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+}
+
+/* Loading States */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    border-top-color: var(--vmware-blue);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.typing-indicator {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--text-secondary);
+    animation: typing 1.4s ease-in-out infinite;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing {
+    0%, 60%, 100% { transform: scale(1); opacity: 0.5; }
+    30% { transform: scale(1.2); opacity: 1; }
+}
+
+/* Mobile Responsive Overrides for Screens */
+@media (max-width: 768px) {
+    .phone-mockup {
+        max-width: 300px;
+        padding: 1.5rem;
+    }
+    
+    .notification {
+        padding: 0.75rem;
+    }
+    
+    .notification-body {
+        font-size: 0.8rem;
+    }
+    
+    .phone-caption {
+        font-size: 0.9rem;
+    }
+    
+    .vcenter-mockup {
+        font-size: 0.9rem;
+    }
+    
+    .vcenter-body {
+        grid-template-columns: 1fr;
+    }
+    
+    .vcenter-sidebar {
+        order: 2;
+        border-right: none;
+        border-top: 1px solid var(--border-color);
+    }
+    
+    .terminal-mockup {
+        padding: 1rem;
+        font-size: 0.8rem;
+    }
+    
+    .terminal-line {
+        word-break: break-all;
+    }
+    
+    .vnli-interface {
+        padding: 1.5rem;
+        margin: 1rem 0;
+    }
+    
+    .vnli-logo {
+        font-size: 1.5rem;
+    }
+    
+    .vnli-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .chat-interface {
+        padding: 1rem;
+    }
+    
+    .message-content {
+        font-size: 0.9rem;
+        padding: 0.75rem;
+    }
+    
+    .ai-analysis {
+        padding: 1.5rem;
+        margin: 1rem auto;
+    }
+    
+    .analysis-title {
+        font-size: 1.2rem;
+    }
+    
+    .result-title {
+        font-size: 0.9rem;
+    }
+    
+    .result-description {
+        font-size: 0.8rem;
+    }
+    
+    .roi-content {
+        padding: 2rem 1.5rem;
+        width: 95%;
+    }
+    
+    .roi-content h3 {
+        font-size: 1.5rem;
+    }
+    
+    .roi-metrics {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .roi-value {
+        font-size: 2rem;
+    }
+    
+    .calculator-inputs {
+        gap: 1rem;
+    }
+    
+    .input-group input {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+    
+    .roi-share-btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .phone-mockup {
+        max-width: 250px;
+        padding: 1rem;
+    }
+    
+    .notification {
+        padding: 0.5rem;
+    }
+    
+    .notification-body {
+        font-size: 0.75rem;
+    }
+    
+    .vcenter-header {
+        padding: 0.75rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .vcenter-logo {
+        font-size: 1rem;
+    }
+    
+    .terminal-mockup {
+        padding: 0.75rem;
+        font-size: 0.7rem;
+    }
+    
+    .vnli-interface {
+        padding: 1rem;
+    }
+    
+    .vnli-logo {
+        font-size: 1.2rem;
+    }
+    
+    .chat-interface {
+        padding: 0.75rem;
+    }
+    
+    .message-avatar {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+    
+    .message-content {
+        font-size: 0.8rem;
+        padding: 0.5rem;
+    }
+    
+    .ai-analysis {
+        padding: 1rem;
+    }
+    
+    .analysis-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .analysis-title {
+        font-size: 1rem;
+    }
+    
+    .roi-content {
+        padding: 1.5rem 1rem;
+    }
+    
+    .roi-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .roi-value {
+        font-size: 1.5rem;
+    }
+    
+    .roi-label {
+        font-size: 0.8rem;
+    }
+}

@@ -1,0 +1,443 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* VMware Brand Colors */
+    --vmware-blue: #0091DA;
+    --vmware-dark-blue: #1A365D;
+    --vmware-green: #00B388;
+    --vmware-orange: #FF6B35;
+    --vmware-red: #E53E3E;
+    
+    /* VNLI Colors */
+    --vnli-primary: linear-gradient(135deg, #0091DA, #00B388);
+    --vnli-glass: rgba(255, 255, 255, 0.1);
+    --vnli-glass-border: rgba(255, 255, 255, 0.2);
+    
+    /* Neutral Colors */
+    --bg-dark: #1a1a1a;
+    --bg-light: #2d3748;
+    --text-primary: #ffffff;
+    --text-secondary: #a0aec0;
+    --border-color: #4a5568;
+    
+    /* Alert Colors */
+    --alert-critical: #fed7d7;
+    --alert-critical-border: #e53e3e;
+    --alert-warning: #fefcbf;
+    --alert-warning-border: #d69e2e;
+    --alert-success: #c6f6d5;
+    --alert-success-border: #38a169;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Screen Container */
+#app {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: translateX(100vw);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.screen.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Landing Page Styles */
+.landing-container {
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+}
+
+.hero-section {
+    margin-bottom: 4rem;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: var(--vnli-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.context-alert {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background: var(--alert-critical);
+    color: #1a202c;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--alert-critical-border);
+    margin: 0 auto 3rem;
+    max-width: 600px;
+}
+
+.alert-icon {
+    font-size: 1.5rem;
+}
+
+.alert-text {
+    font-weight: 600;
+}
+
+/* Journey Selection */
+.journey-selection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.journey-btn {
+    background: var(--bg-light);
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    color: var(--text-primary);
+    font-family: inherit;
+    position: relative;
+    overflow: hidden;
+}
+
+.journey-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.journey-before {
+    border-color: var(--vmware-red);
+}
+
+.journey-before:hover {
+    background: linear-gradient(135deg, var(--vmware-red), #c53030);
+    border-color: var(--vmware-red);
+}
+
+.journey-after {
+    border-color: var(--vmware-green);
+}
+
+.journey-after:hover {
+    background: var(--vnli-primary);
+    border-color: var(--vmware-green);
+}
+
+.btn-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.btn-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.journey-btn:hover .btn-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Comparison Stats */
+.comparison-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.stat {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--bg-light);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--vmware-green);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+/* Screen Container */
+.screen-container {
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.screen-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.journey-indicator {
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+
+.before-screen .journey-indicator {
+    background: var(--vmware-red);
+    color: white;
+}
+
+.after-screen .journey-indicator {
+    background: var(--vnli-primary);
+    color: white;
+}
+
+.time-stamp {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--vmware-orange);
+}
+
+/* Navigation */
+.screen-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.nav-btn {
+    background: var(--bg-light);
+    border: 2px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: var(--vmware-blue);
+    border-color: var(--vmware-blue);
+}
+
+.progress-dots {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--border-color);
+    transition: background 0.3s ease;
+}
+
+.dot.active {
+    background: var(--vmware-blue);
+}
+
+/* Journey Switch */
+.journey-switch {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.switch-btn {
+    background: transparent;
+    border: 2px solid var(--vmware-blue);
+    color: var(--vmware-blue);
+    padding: 0.75rem 2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.switch-btn:hover {
+    background: var(--vmware-blue);
+    color: white;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .screen {
+        padding: 1rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
+    .journey-selection {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .journey-btn {
+        padding: 2rem 1rem;
+    }
+    
+    .btn-title {
+        font-size: 1.3rem;
+    }
+    
+    .comparison-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .screen-navigation {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-btn {
+        width: 100%;
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .progress-dots {
+        order: -1;
+        justify-content: center;
+    }
+    
+    .screen-header {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .journey-indicator {
+        font-size: 1rem;
+    }
+    
+    .time-stamp {
+        font-size: 1.2rem;
+    }
+    
+    .context-alert {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .screen {
+        padding: 0.5rem;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .journey-btn {
+        padding: 1.5rem 1rem;
+    }
+    
+    .btn-title {
+        font-size: 1.1rem;
+    }
+    
+    .btn-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .stat-label {
+        font-size: 0.9rem;
+    }
+    
+    .landing-container {
+        padding: 0 1rem;
+    }
+    
+    .screen-container {
+        padding: 0;
+    }
+}

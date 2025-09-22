@@ -1,0 +1,437 @@
+/* Animation Styles */
+
+/* Screen Transitions */
+.screen-transition-enter {
+    opacity: 0;
+    transform: translateX(100vw);
+}
+
+.screen-transition-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.screen-transition-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.screen-transition-exit-active {
+    opacity: 0;
+    transform: translateX(-100vw);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth slide transitions */
+.slide-in-right {
+    animation: slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.slide-out-left {
+    animation: slideOutLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100vw);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-100vw);
+    }
+}
+
+/* Fade transitions */
+.fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.fade-out {
+    animation: fadeOut 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* Element entrance animations */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-on-scroll.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Button hover animations */
+.journey-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.journey-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.journey-btn:hover::before {
+    left: 100%;
+}
+
+/* Progress animations */
+.progress-fill {
+    animation: progressFill 2s ease-out forwards;
+}
+
+@keyframes progressFill {
+    from { width: 0%; }
+    to { width: 85%; }
+}
+
+/* Notification animations */
+.notification {
+    animation: notificationSlide 0.4s ease-out;
+}
+
+@keyframes notificationSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Terminal typing animation */
+.terminal-cursor {
+    display: inline-block;
+    background: #00ff00;
+    width: 2px;
+    height: 1em;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+.typing-animation {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid #00ff00;
+    animation: typing 3s steps(40, end), blink-caret 1s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #00ff00; }
+}
+
+/* Alert pulsing animation */
+.alert-critical {
+    animation: alertPulse 2s ease-in-out infinite;
+}
+
+@keyframes alertPulse {
+    0% { box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(229, 62, 62, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(229, 62, 62, 0); }
+}
+
+/* Loading animations */
+.loading-dots {
+    display: inline-flex;
+    gap: 4px;
+}
+
+.loading-dots .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--vmware-blue);
+    animation: loadingDots 1.4s ease-in-out infinite;
+}
+
+.loading-dots .dot:nth-child(1) { animation-delay: 0s; }
+.loading-dots .dot:nth-child(2) { animation-delay: 0.2s; }
+.loading-dots .dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes loadingDots {
+    0%, 60%, 100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    30% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* VNLI interface animations */
+.vnli-interface {
+    animation: vnliGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes vnliGlow {
+    from {
+        box-shadow: 0 20px 40px rgba(0, 145, 218, 0.3);
+    }
+    to {
+        box-shadow: 0 20px 60px rgba(0, 179, 136, 0.4);
+    }
+}
+
+.chat-message {
+    animation: messageAppear 0.5s ease-out;
+}
+
+@keyframes messageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ROI overlay animations */
+.roi-overlay {
+    animation: overlayFadeIn 0.3s ease-out;
+}
+
+.roi-overlay.hidden {
+    animation: overlayFadeOut 0.3s ease-out;
+}
+
+@keyframes overlayFadeIn {
+    from {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+    }
+    to {
+        opacity: 1;
+        backdrop-filter: blur(10px);
+    }
+}
+
+@keyframes overlayFadeOut {
+    from {
+        opacity: 1;
+        backdrop-filter: blur(10px);
+    }
+    to {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+    }
+}
+
+.roi-content {
+    animation: contentSlideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes contentSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Navigation animations */
+.nav-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover::after {
+    width: 200%;
+    height: 200%;
+}
+
+/* Dot progress animation */
+.progress-dots .dot {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-dots .dot.active {
+    animation: dotPulse 1s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Hero text animations */
+.hero-title {
+    animation: heroTitleSlide 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-subtitle {
+    animation: heroSubtitleSlide 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+}
+
+.hero-description {
+    animation: heroDescriptionSlide 1s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+}
+
+@keyframes heroTitleSlide {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heroSubtitleSlide {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heroDescriptionSlide {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Statistics counter animation */
+.stat-number {
+    animation: counterUp 2s ease-out;
+}
+
+@keyframes counterUp {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Glassmorphism effect animations */
+.vnli-glass {
+    backdrop-filter: blur(20px);
+    transition: backdrop-filter 0.3s ease;
+}
+
+.vnli-glass:hover {
+    backdrop-filter: blur(25px);
+}
+
+/* Mobile-specific animations */
+@media (max-width: 768px) {
+    .screen {
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+        animation-duration: 0.8s;
+    }
+    
+    .journey-btn:hover::before {
+        display: none;
+    }
+    
+    .vnli-interface {
+        animation-duration: 2s;
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+    .journey-btn {
+        border-width: 3px;
+    }
+    
+    .alert-critical {
+        animation: none;
+        border-width: 3px;
+    }
+    
+    .vnli-interface {
+        animation: none;
+        border-width: 2px;
+    }
+}

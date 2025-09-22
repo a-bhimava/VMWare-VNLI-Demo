@@ -33,25 +33,50 @@ class ScreenManager {
                 return;
             }
 
-            // Handle realistic action buttons
-            const action = e.target.getAttribute('data-action');
-            const target = e.target.getAttribute('data-target');
+            // Handle realistic action buttons and their parent elements
+            let actionElement = e.target;
+            let action = actionElement.getAttribute('data-action');
+            let target = actionElement.getAttribute('data-target');
+
+            // Check parent elements if current element doesn't have data-action
+            if (!action) {
+                actionElement = e.target.closest('[data-action]');
+                if (actionElement) {
+                    action = actionElement.getAttribute('data-action');
+                    target = actionElement.getAttribute('data-target');
+                }
+            }
 
             if (action === 'next') {
+                console.log('Next action triggered'); // Debug log
                 this.nextScreen();
+                return;
             } else if (action === 'complete') {
                 this.showScreen('landing');
+                return;
             } else if (action === 'switch-journey') {
                 if (target) {
                     this.switchJourney(target);
                 }
+                return;
             }
 
-            // Handle clickable interface elements
+            // Handle clickable interface elements (backup)
             if (e.target.closest('.clickable-notification')) {
+                console.log('Clickable notification triggered'); // Debug log
                 this.nextScreen();
+                return;
             } else if (e.target.closest('.clickable-alert')) {
+                console.log('Clickable alert triggered'); // Debug log
                 this.nextScreen();
+                return;
+            }
+
+            // Handle any realistic-btn class as fallback
+            if (e.target.closest('.realistic-btn') && this.currentJourney) {
+                console.log('Realistic button fallback triggered'); // Debug log
+                this.nextScreen();
+                return;
             }
         });
 
@@ -67,26 +92,35 @@ class ScreenManager {
                 case ' ':
                 case 'Enter':
                     e.preventDefault();
-                    this.nextScreen();
+                    console.log('Keyboard navigation: next screen'); // Debug log
+                    if (this.currentJourney) {
+                        this.nextScreen();
+                    }
                     break;
                 case 'ArrowLeft':
                     e.preventDefault();
-                    this.previousScreen();
+                    console.log('Keyboard navigation: previous screen'); // Debug log
+                    if (this.currentJourney) {
+                        this.previousScreen();
+                    }
                     break;
                 case 'Escape':
                 case 'Home':
                     e.preventDefault();
+                    console.log('Keyboard navigation: home'); // Debug log
                     this.showScreen('landing');
                     break;
                 case '1':
                     if (this.currentJourney) {
                         e.preventDefault();
+                        console.log('Keyboard navigation: switch to before'); // Debug log
                         this.switchJourney('before');
                     }
                     break;
                 case '2':
                     if (this.currentJourney) {
                         e.preventDefault();
+                        console.log('Keyboard navigation: switch to after'); // Debug log
                         this.switchJourney('after');
                     }
                     break;
@@ -187,6 +221,14 @@ class ScreenManager {
                             <div class="tap-indicator">👆 Tap notification to check vCenter</div>
                         </div>
                     </div>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="realistic-btn backup-nav-btn" data-action="next">
+                            📱 Check vCenter Alert
+                        </button>
+                        <div style="margin-top: 1rem; color: #a0aec0; font-size: 0.9rem;">
+                            💡 Use arrow keys or space bar to navigate
+                        </div>
+                    </div>
                 `
             },
             2: {
@@ -264,6 +306,11 @@ class ScreenManager {
                     </div>
                     <div style="text-align: center; margin-top: 2rem; color: #a0aec0; font-style: italic;">
                         Sarah clicks on the critical alert to get more details
+                    </div>
+                    <div style="text-align: center; margin-top: 1.5rem;">
+                        <button class="realistic-btn backup-nav-btn" data-action="next">
+                            🔍 Need More Details - Try PowerCLI
+                        </button>
                     </div>
                 `
             },
@@ -442,6 +489,14 @@ class ScreenManager {
                         <div class="phone-caption">Sarah's phone buzzes at 3:17 AM<br><strong style="color: #00b388;">But now she has VNLI...</strong></div>
                         <div class="interaction-hint">
                             <div class="tap-indicator">👆 Tap notification to open VNLI</div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="realistic-btn backup-nav-btn" data-action="next">
+                            🚀 Open VNLI App
+                        </button>
+                        <div style="margin-top: 1rem; color: #a0aec0; font-size: 0.9rem;">
+                            💡 Use arrow keys or space bar to navigate
                         </div>
                     </div>
                 `

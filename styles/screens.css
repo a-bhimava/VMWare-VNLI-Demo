@@ -840,6 +840,36 @@
     transform: translateY(-2px);
 }
 
+/* Backup navigation buttons */
+.backup-nav-btn {
+    background: var(--vmware-blue);
+    border: 2px solid var(--vmware-blue);
+    color: white;
+    opacity: 0.8;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
+    margin-top: 1rem;
+    position: relative;
+}
+
+.backup-nav-btn::before {
+    content: "Click or use arrow keys";
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    opacity: 0.7;
+}
+
+.backup-nav-btn:hover {
+    opacity: 1;
+    background: var(--vmware-dark-blue);
+    border-color: var(--vmware-dark-blue);
+}
+
 /* Mobile Responsive Overrides for Screens */
 @media (max-width: 768px) {
     .phone-mockup {

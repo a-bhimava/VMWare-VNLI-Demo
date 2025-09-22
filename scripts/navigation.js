@@ -72,9 +72,9 @@ class ScreenManager {
                 return;
             }
 
-            // Handle any realistic-btn class as fallback
-            if (e.target.closest('.realistic-btn') && this.currentJourney) {
-                console.log('Realistic button fallback triggered'); // Debug log
+            // Handle any realistic-btn or glassmorphic-btn class as fallback
+            if ((e.target.closest('.realistic-btn') || e.target.closest('.glassmorphic-btn')) && this.currentJourney) {
+                console.log('Button fallback triggered'); // Debug log
                 this.nextScreen();
                 return;
             }
@@ -217,17 +217,11 @@ class ScreenManager {
                             </div>
                         </div>
                         <div class="phone-caption">Sarah's phone buzzes at 3:17 AM</div>
-                        <div class="interaction-hint">
-                            <div class="tap-indicator">👆 Tap notification to check vCenter</div>
-                        </div>
                     </div>
                     <div style="text-align: center; margin-top: 2rem;">
-                        <button class="realistic-btn backup-nav-btn" data-action="next">
-                            📱 Check vCenter Alert
+                        <button class="glassmorphic-btn" data-action="next">
+                            💻 Open laptop at 3:17 AM
                         </button>
-                        <div style="margin-top: 1rem; color: #a0aec0; font-size: 0.9rem;">
-                            💡 Use arrow keys or space bar to navigate
-                        </div>
                     </div>
                 `
             },

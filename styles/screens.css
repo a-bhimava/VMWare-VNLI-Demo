@@ -669,6 +669,177 @@
     30% { transform: scale(1.2); opacity: 1; }
 }
 
+/* Realistic Interactive Elements */
+.realistic-btn {
+    background: var(--vmware-blue);
+    border: none;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 145, 218, 0.3);
+}
+
+.realistic-btn:hover {
+    background: var(--vmware-dark-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 145, 218, 0.4);
+}
+
+.realistic-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 145, 218, 0.3);
+}
+
+/* Specific button styles */
+.connect-btn {
+    background: var(--vmware-orange);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+.connect-btn:hover {
+    background: #e55a2b;
+    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+}
+
+.terminal-btn {
+    background: #333;
+    color: #00ff00;
+    box-shadow: 0 4px 12px rgba(0, 255, 0, 0.2);
+}
+
+.terminal-btn:hover {
+    background: #444;
+    box-shadow: 0 8px 20px rgba(0, 255, 0, 0.3);
+}
+
+.search-btn {
+    background: #4299e1;
+    box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+}
+
+.search-btn:hover {
+    background: #3182ce;
+    box-shadow: 0 8px 20px rgba(66, 153, 225, 0.4);
+}
+
+.apply-btn {
+    background: var(--vmware-blue);
+    box-shadow: 0 4px 12px rgba(0, 145, 218, 0.3);
+}
+
+.complete-btn {
+    background: var(--vmware-green);
+    box-shadow: 0 4px 12px rgba(0, 179, 136, 0.3);
+}
+
+.complete-btn:hover {
+    background: #00a67d;
+    box-shadow: 0 8px 20px rgba(0, 179, 136, 0.4);
+}
+
+.execute-btn {
+    background: var(--vmware-green);
+    box-shadow: 0 4px 12px rgba(0, 179, 136, 0.3);
+}
+
+.execute-btn:hover {
+    background: #00a67d;
+    box-shadow: 0 8px 20px rgba(0, 179, 136, 0.4);
+}
+
+.mic-btn {
+    background: var(--vnli-primary);
+    border: none;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 145, 218, 0.3);
+}
+
+.mic-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 145, 218, 0.4);
+}
+
+/* Clickable interface elements */
+.clickable-notification {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.clickable-notification:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 145, 218, 0.3);
+}
+
+.clickable-alert {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.clickable-alert:hover {
+    background: rgba(229, 62, 62, 0.1);
+    border-left-color: #ff6b6b;
+}
+
+.alert-action {
+    font-size: 0.8rem;
+    color: var(--vmware-blue);
+    font-style: italic;
+    margin-top: 0.5rem;
+}
+
+/* Interaction hints */
+.interaction-hint {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.tap-indicator {
+    color: var(--vmware-blue);
+    font-size: 0.9rem;
+    font-weight: 600;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+/* Journey switch buttons */
+.journey-switch-btn {
+    background: transparent;
+    border: 2px solid var(--vmware-blue);
+    color: var(--vmware-blue);
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.journey-switch-btn:hover {
+    background: var(--vmware-blue);
+    color: white;
+    transform: translateY(-2px);
+}
+
 /* Mobile Responsive Overrides for Screens */
 @media (max-width: 768px) {
     .phone-mockup {
@@ -863,5 +1034,54 @@
     
     .roi-label {
         font-size: 0.8rem;
+    }
+    
+    /* Mobile responsive buttons */
+    .realistic-btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .mic-btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .journey-switch-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+    }
+    
+    .tap-indicator {
+        font-size: 0.8rem;
+    }
+}
+
+/* Mobile menu adjustments */
+@media (max-width: 768px) {
+    .menubar-left {
+        gap: 0.5rem;
+    }
+    
+    .start-over-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .start-over-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.7rem;
+    }
+    
+    .realistic-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+    }
+    
+    .journey-switch-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
     }
 }

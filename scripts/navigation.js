@@ -25,29 +25,71 @@ class ScreenManager {
             this.startJourney('after');
         });
 
-        // Navigation buttons
+        // Navigation buttons - context-aware realistic actions
         document.addEventListener('click', (e) => {
-            if (e.target.id === 'back-to-landing' || e.target.id === 'back-to-landing-after') {
+            // Start Over button in menubar
+            if (e.target.id === 'start-over-btn') {
                 this.showScreen('landing');
-            } else if (e.target.id === 'next-before') {
-                this.nextScreen('before');
-            } else if (e.target.id === 'next-after') {
-                this.nextScreen('after');
-            } else if (e.target.id === 'switch-to-before') {
-                this.switchJourney('before');
-            } else if (e.target.id === 'switch-to-after') {
-                this.switchJourney('after');
+                return;
+            }
+
+            // Handle realistic action buttons
+            const action = e.target.getAttribute('data-action');
+            const target = e.target.getAttribute('data-target');
+
+            if (action === 'next') {
+                this.nextScreen();
+            } else if (action === 'complete') {
+                this.showScreen('landing');
+            } else if (action === 'switch-journey') {
+                if (target) {
+                    this.switchJourney(target);
+                }
+            }
+
+            // Handle clickable interface elements
+            if (e.target.closest('.clickable-notification')) {
+                this.nextScreen();
+            } else if (e.target.closest('.clickable-alert')) {
+                this.nextScreen();
             }
         });
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') {
-                this.nextScreen();
-            } else if (e.key === 'ArrowLeft') {
-                this.previousScreen();
-            } else if (e.key === 'Escape') {
-                this.showScreen('landing');
+            // Don't interfere with typing in inputs
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                return;
+            }
+
+            switch (e.key) {
+                case 'ArrowRight':
+                case ' ':
+                case 'Enter':
+                    e.preventDefault();
+                    this.nextScreen();
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    this.previousScreen();
+                    break;
+                case 'Escape':
+                case 'Home':
+                    e.preventDefault();
+                    this.showScreen('landing');
+                    break;
+                case '1':
+                    if (this.currentJourney) {
+                        e.preventDefault();
+                        this.switchJourney('before');
+                    }
+                    break;
+                case '2':
+                    if (this.currentJourney) {
+                        e.preventDefault();
+                        this.switchJourney('after');
+                    }
+                    break;
             }
         });
 
@@ -97,18 +139,6 @@ class ScreenManager {
                         ${content.html}
                     </div>
                 </div>
-                
-                <div class="screen-navigation">
-                    <button class="nav-btn" id="back-to-landing">← Back to Start</button>
-                    <div class="progress-dots">
-                        ${this.createProgressDots(stepNumber, 7)}
-                    </div>
-                    <button class="nav-btn" id="next-before">
-                        ${stepNumber === 7 ? 'Complete Journey' : 'Next →'}
-                    </button>
-                </div>
-                
-                ${stepNumber > 3 ? '<div class="journey-switch"><button id="switch-to-after" class="switch-btn">See how VNLI handles this scenario →</button></div>' : ''}
             </div>
         `;
         
@@ -128,18 +158,6 @@ class ScreenManager {
                         ${content.html}
                     </div>
                 </div>
-                
-                <div class="screen-navigation">
-                    <button class="nav-btn" id="back-to-landing-after">← Back to Start</button>
-                    <div class="progress-dots">
-                        ${this.createProgressDots(stepNumber, 7)}
-                    </div>
-                    <button class="nav-btn" id="next-after">
-                        ${stepNumber === 7 ? 'Complete Journey' : 'Next →'}
-                    </button>
-                </div>
-                
-                ${stepNumber > 3 ? '<div class="journey-switch"><button id="switch-to-before" class="switch-btn">See how the old way handles this scenario →</button></div>' : ''}
             </div>
         `;
         
@@ -152,7 +170,7 @@ class ScreenManager {
                 time: '3:17 AM',
                 html: `
                     <div class="phone-mockup">
-                        <div class="notification">
+                        <div class="notification clickable-notification" data-action="next">
                             <div class="notification-header">
                                 <div class="app-icon">📱</div>
                                 <div class="notification-title">VMware Alert</div>
@@ -165,6 +183,9 @@ class ScreenManager {
                             </div>
                         </div>
                         <div class="phone-caption">Sarah's phone buzzes at 3:17 AM</div>
+                        <div class="interaction-hint">
+                            <div class="tap-indicator">👆 Tap notification to check vCenter</div>
+                        </div>
                     </div>
                 `
             },
@@ -183,12 +204,15 @@ class ScreenManager {
                                     <div style="font-size: 1.2rem; margin-bottom: 1rem; color: #a0aec0;">Connecting to vcenter-prod.company.com</div>
                                     <div class="loading-spinner" style="margin: 0 auto;"></div>
                                 </div>
-                                <div style="color: #e53e3e; font-size: 0.9rem;">Connection timeout... retrying...</div>
+                                <div style="color: #e53e3e; font-size: 0.9rem; margin-bottom: 2rem;">Connection timeout... retrying...</div>
+                                <button class="realistic-btn connect-btn" data-action="next">
+                                    🔄 Retry Connection
+                                </button>
                             </div>
                         </div>
                     </div>
                     <div style="text-align: center; margin-top: 2rem; color: #a0aec0; font-style: italic;">
-                        Sarah enters credentials, waits for slow VPN connection
+                        Sarah waits frustratingly for the slow VPN connection
                     </div>
                 `
             },
@@ -212,12 +236,13 @@ class ScreenManager {
                             </div>
                             <div class="vcenter-main">
                                 <div class="vcenter-alerts">
-                                    <div class="alert-item">
+                                    <div class="alert-item clickable-alert" data-action="next">
                                         <div class="alert-icon">⚠️</div>
                                         <div class="alert-content">
                                             <div class="alert-title">Critical: High CPU Usage</div>
                                             <div class="alert-details">PROD-CLUSTER-01 - 15 VMs affected</div>
                                         </div>
+                                        <div class="alert-action">👆 Click to investigate</div>
                                     </div>
                                     <div class="alert-item">
                                         <div class="alert-icon">⚠️</div>
@@ -238,7 +263,7 @@ class ScreenManager {
                         </div>
                     </div>
                     <div style="text-align: center; margin-top: 2rem; color: #a0aec0; font-style: italic;">
-                        Sarah sees multiple alerts but needs more detail to understand the root cause
+                        Sarah clicks on the critical alert to get more details
                     </div>
                 `
             },
@@ -273,8 +298,13 @@ class ScreenManager {
                             <span class="terminal-command typing-animation">Get-Cluster "PROD-CLUSTER-01" | Get-VM | Get-Stat -Stat cpu.usage.average -Start (Get-Date).AddMinutes(-30)<span class="terminal-cursor"></span></span>
                         </div>
                     </div>
-                    <div style="text-align: center; margin-top: 2rem; color: #a0aec0; font-style: italic;">
-                        Sarah struggles with complex PowerCLI syntax, making multiple attempts
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="realistic-btn terminal-btn" data-action="next">
+                            ⌨️ Try Different Command Approach
+                        </button>
+                        <div style="color: #a0aec0; font-style: italic; margin-top: 1rem;">
+                            Sarah gives up on PowerCLI and searches for help
+                        </div>
                     </div>
                 `
             },
@@ -300,8 +330,13 @@ class ScreenManager {
                             <div style="color: #4299e1;">VMware Communities: "High CPU usage troubleshooting"</div>
                         </div>
                     </div>
-                    <div style="text-align: center; margin-top: 2rem; color: #a0aec0; font-style: italic;">
-                        20 browser tabs open, searching for solutions across multiple sources
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="realistic-btn search-btn" data-action="next">
+                            🔍 Search More Resources
+                        </button>
+                        <div style="color: #a0aec0; font-style: italic; margin-top: 1rem;">
+                            Still no clear solution - try manual resource allocation
+                        </div>
                     </div>
                 `
             },
@@ -332,15 +367,15 @@ class ScreenManager {
                                         <span style="color: #00b388;">8 GB</span>
                                     </div>
                                 </div>
-                                <button style="background: #0091da; border: none; color: white; padding: 0.75rem 2rem; border-radius: 6px; cursor: pointer;">Apply Changes</button>
+                                <button class="realistic-btn apply-btn" data-action="next" style="background: #0091da; border: none; color: white; padding: 0.75rem 2rem; border-radius: 6px; cursor: pointer;">Apply Changes</button>
                             </div>
-                            <div style="color: #ffa500; font-style: italic; text-align: center;">
+                            <div style="color: #ffa500; font-style: italic; text-align: center; margin-top: 1rem;">
                                 ⚠️ Changes require VM restart - 15 VMs to configure manually
                             </div>
                         </div>
-                    </div>
-                    <div style="text-align: center; margin-top: 2rem; color: #a0aec0; font-style: italic;">
-                        Trial and error resource adjustment - will this configuration work?
+                        <div style="text-align: center; margin-top: 2rem; color: #a0aec0; font-style: italic;">
+                            Sarah hopes this trial-and-error approach will work
+                        </div>
                     </div>
                 `
             },
@@ -365,8 +400,18 @@ class ScreenManager {
                                 ✅ All VMs back to normal performance
                             </div>
                         </div>
-                        <div style="color: #a0aec0; font-style: italic; margin-top: 2rem;">
-                            Sarah exhausted but relieved - until the next alert
+                        <div style="text-align: center; margin-top: 2rem;">
+                            <button class="realistic-btn complete-btn" data-action="complete">
+                                😴 Finally Fixed - Back to Sleep
+                            </button>
+                            <div style="color: #a0aec0; font-style: italic; margin-top: 1rem;">
+                                Sarah is exhausted but relieved - until the next alert
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin-top: 2rem;">
+                            <button class="journey-switch-btn" data-action="switch-journey" data-target="after">
+                                🔄 See how VNLI handles this same scenario
+                            </button>
                         </div>
                     </div>
                 `
@@ -382,7 +427,7 @@ class ScreenManager {
                 time: '3:17 AM',
                 html: `
                     <div class="phone-mockup">
-                        <div class="notification">
+                        <div class="notification clickable-notification" data-action="next">
                             <div class="notification-header">
                                 <div class="app-icon">📱</div>
                                 <div class="notification-title">VMware Alert</div>
@@ -395,6 +440,9 @@ class ScreenManager {
                             </div>
                         </div>
                         <div class="phone-caption">Sarah's phone buzzes at 3:17 AM<br><strong style="color: #00b388;">But now she has VNLI...</strong></div>
+                        <div class="interaction-hint">
+                            <div class="tap-indicator">👆 Tap notification to open VNLI</div>
+                        </div>
                     </div>
                 `
             },
@@ -413,10 +461,13 @@ class ScreenManager {
                                     "What's causing the production cluster alert?"
                                 </div>
                             </div>
+                            <div class="chat-input">
+                                <button class="mic-btn" data-action="next">🎤 Ask VNLI</button>
+                            </div>
                         </div>
                     </div>
                     <div style="text-align: center; margin-top: 2rem; color: #a0aec0; font-style: italic;">
-                        Sarah opens VNLI app and speaks naturally to her phone
+                        Sarah speaks naturally to VNLI - no complex commands needed
                     </div>
                 `
             },
@@ -455,8 +506,13 @@ class ScreenManager {
                             </div>
                         </div>
                     </div>
-                    <div style="text-align: center; margin-top: 2rem; color: #a0aec0; font-style: italic;">
-                        AI processes thousands of data points in seconds
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="realistic-btn analysis-btn" data-action="next">
+                            ⚡ Analysis Complete - View Results
+                        </button>
+                        <div style="color: #a0aec0; font-style: italic; margin-top: 1rem;">
+                            AI processed thousands of data points in seconds
+                        </div>
                     </div>
                 `
             },
@@ -479,8 +535,13 @@ class ScreenManager {
                             </div>
                         </div>
                     </div>
-                    <div style="text-align: center; margin-top: 2rem; color: #a0aec0; font-style: italic;">
-                        Specific problem identified with clear, actionable solution
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="realistic-btn diagnosis-btn" data-action="next">
+                            🎯 View Root Cause & Solution
+                        </button>
+                        <div style="color: #a0aec0; font-style: italic; margin-top: 1rem;">
+                            Clear diagnosis with actionable solution provided
+                        </div>
                     </div>
                 `
             },
@@ -501,13 +562,13 @@ class ScreenManager {
                                 <div style="color: #00b388;"><strong>Expected Result:</strong> 95% performance improvement</div>
                             </div>
                             <div style="display: flex; gap: 1rem; justify-content: center;">
-                                <button style="background: #00b388; border: none; color: white; padding: 1rem 2rem; border-radius: 25px; font-size: 1.1rem; cursor: pointer; font-weight: bold;">✓ Execute Fix</button>
+                                <button class="realistic-btn execute-btn" data-action="next" style="background: #00b388; border: none; color: white; padding: 1rem 2rem; border-radius: 25px; font-size: 1.1rem; cursor: pointer; font-weight: bold;">✓ Execute Fix</button>
                                 <button style="background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.3); color: white; padding: 1rem 2rem; border-radius: 25px; font-size: 1.1rem; cursor: pointer;">Show Details</button>
                             </div>
                         </div>
                     </div>
                     <div style="text-align: center; margin-top: 2rem; color: #a0aec0; font-style: italic;">
-                        Clear action with safety confirmation and impact assessment
+                        Safe, one-click solution with clear impact assessment
                     </div>
                 `
             },
@@ -537,8 +598,13 @@ class ScreenManager {
                             </div>
                         </div>
                     </div>
-                    <div style="text-align: center; margin-top: 2rem; color: #a0aec0; font-style: italic;">
-                        Automated execution with real-time status updates
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="realistic-btn monitor-btn" data-action="next">
+                            📊 Monitor Progress Complete
+                        </button>
+                        <div style="color: #a0aec0; font-style: italic; margin-top: 1rem;">
+                            Automated resolution with real-time monitoring
+                        </div>
                     </div>
                 `
             },
@@ -566,9 +632,24 @@ class ScreenManager {
                         <div style="color: #a0aec0; font-style: italic; margin-top: 2rem;">
                             Sarah returns to sleep knowing VNLI is watching
                         </div>
-                        <button onclick="screenManager.showROI()" style="background: #0091da; border: none; color: white; padding: 1rem 2rem; border-radius: 25px; margin-top: 2rem; cursor: pointer; font-size: 1.1rem;">
-                            💰 View ROI Impact
-                        </button>
+                        <div style="text-align: center; margin-top: 2rem;">
+                            <button class="realistic-btn sleep-btn" data-action="complete">
+                                😴 Back to Sleep with Confidence
+                            </button>
+                            <div style="color: #a0aec0; font-style: italic; margin-top: 1rem;">
+                                Sarah sleeps peacefully knowing VNLI is monitoring
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin-top: 2rem;">
+                            <button class="roi-btn" onclick="screenManager.showROI()" style="background: #0091da; border: none; color: white; padding: 1rem 2rem; border-radius: 25px; cursor: pointer; font-size: 1.1rem;">
+                                💰 View ROI Impact
+                            </button>
+                        </div>
+                        <div style="text-align: center; margin-top: 2rem;">
+                            <button class="journey-switch-btn" data-action="switch-journey" data-target="before">
+                                🔄 See how the old way handles this scenario
+                            </button>
+                        </div>
                     </div>
                 `
             }
@@ -596,6 +677,12 @@ class ScreenManager {
     nextScreen(journey = this.currentJourney) {
         if (!journey) return;
         
+        // Add visual feedback for button press
+        const activeElement = document.activeElement;
+        if (activeElement && activeElement.classList.contains('realistic-btn')) {
+            this.addClickFeedback(activeElement);
+        }
+        
         if (this.currentStep < 7) {
             this.currentStep++;
             const screenId = `${journey}-${this.currentStep}`;
@@ -604,6 +691,16 @@ class ScreenManager {
             // Journey complete - return to landing or show completion
             this.showScreen('landing');
         }
+    }
+
+    addClickFeedback(element) {
+        element.style.transform = 'scale(0.95)';
+        element.style.transition = 'transform 0.1s ease';
+        
+        setTimeout(() => {
+            element.style.transform = '';
+            element.style.transition = '';
+        }, 150);
     }
 
     previousScreen(journey = this.currentJourney) {

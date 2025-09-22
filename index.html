@@ -9,6 +9,26 @@
     <link rel="stylesheet" href="styles/animations.css">
 </head>
 <body>
+    <!-- Fixed Menubar -->
+    <div id="menubar" class="menubar hidden">
+        <div class="menubar-left">
+            <div id="menubar-journey-indicator" class="menubar-journey-indicator">The Current Nightmare</div>
+        </div>
+        <div class="menubar-center">
+            <div class="menubar-progress">
+                <div class="menubar-progress-bar">
+                    <div id="menubar-progress-fill" class="menubar-progress-fill"></div>
+                </div>
+                <div class="menubar-step-counter">
+                    <span id="menubar-current-step">1</span> of <span id="menubar-total-steps">7</span>
+                </div>
+            </div>
+        </div>
+        <div class="menubar-right">
+            <div id="menubar-timestamp" class="menubar-timestamp">3:17 AM</div>
+        </div>
+    </div>
+
     <div id="app">
         <!-- Landing Page -->
         <div id="landing" class="screen active">

@@ -92,11 +92,6 @@ class ScreenManager {
         const content = this.getBeforeScreenContent(stepNumber);
         screen.innerHTML = `
             <div class="screen-container">
-                <div class="screen-header">
-                    <div class="journey-indicator">The Current Nightmare</div>
-                    <div class="time-stamp" id="time-${screenId}">${content.time}</div>
-                </div>
-                
                 <div class="screen-content">
                     <div class="content-main">
                         ${content.html}
@@ -128,11 +123,6 @@ class ScreenManager {
         const content = this.getAfterScreenContent(stepNumber);
         screen.innerHTML = `
             <div class="screen-container">
-                <div class="screen-header">
-                    <div class="journey-indicator">The VNLI Transformation</div>
-                    <div class="time-stamp" id="time-${screenId}">${content.time}</div>
-                </div>
-                
                 <div class="screen-content">
                     <div class="content-main">
                         ${content.html}
@@ -652,7 +642,58 @@ class ScreenManager {
                 const parts = screenId.split('-');
                 this.currentJourney = parts[0];
                 this.currentStep = parseInt(parts[1]);
+                this.updateMenubar();
+            } else {
+                this.hideMenubar();
             }
+        }
+    }
+
+    updateMenubar() {
+        const menubar = document.getElementById('menubar');
+        const journeyIndicator = document.getElementById('menubar-journey-indicator');
+        const timestamp = document.getElementById('menubar-timestamp');
+        const currentStepEl = document.getElementById('menubar-current-step');
+        const totalStepsEl = document.getElementById('menubar-total-steps');
+        const progressFill = document.getElementById('menubar-progress-fill');
+
+        if (!menubar) return;
+
+        // Show menubar
+        menubar.classList.remove('hidden');
+
+        // Update journey indicator and styling
+        if (this.currentJourney === 'before') {
+            journeyIndicator.textContent = 'The Current Nightmare';
+            journeyIndicator.className = 'menubar-journey-indicator before-journey';
+        } else if (this.currentJourney === 'after') {
+            journeyIndicator.textContent = 'The VNLI Transformation';
+            journeyIndicator.className = 'menubar-journey-indicator after-journey';
+        }
+
+        // Update timestamp based on current step
+        const timeStamps = {
+            before: ['3:17 AM', '3:25 AM', '3:32 AM', '3:45 AM', '4:15 AM', '5:30 AM', '7:02 AM'],
+            after: ['3:17 AM', '3:18 AM', '3:18 AM', '3:18 AM', '3:19 AM', '3:20 AM', '3:21 AM']
+        };
+        
+        if (timestamp && timeStamps[this.currentJourney]) {
+            timestamp.textContent = timeStamps[this.currentJourney][this.currentStep - 1] || '3:17 AM';
+        }
+
+        // Update progress
+        if (currentStepEl) currentStepEl.textContent = this.currentStep;
+        if (totalStepsEl) totalStepsEl.textContent = '7';
+        if (progressFill) {
+            const progressPercent = (this.currentStep / 7) * 100;
+            progressFill.style.width = progressPercent + '%';
+        }
+    }
+
+    hideMenubar() {
+        const menubar = document.getElementById('menubar');
+        if (menubar) {
+            menubar.classList.add('hidden');
         }
     }
 

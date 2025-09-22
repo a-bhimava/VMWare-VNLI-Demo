@@ -16,7 +16,7 @@ Follow a VMware administrator through a critical 3 AM alert - first experiencing
 
 ## Live Demo
 
-Visit: [GitHub Pages URL will be here after deployment]
+Visit: https://a-bhimava.github.io/VMWare-VNLI-Demo/
 
 ## Development
 
@@ -29,6 +29,3 @@ cd vnli-pov-demo
 python -m http.server 8000
 ```
 
-## License
-
-VMware Internal Use Only

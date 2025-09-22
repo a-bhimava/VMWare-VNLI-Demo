@@ -42,6 +42,102 @@ body {
     overflow-x: hidden;
 }
 
+/* Fixed Menubar */
+.menubar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.menubar.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.menubar-left {
+    flex: 1;
+}
+
+.menubar-journey-indicator {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.menubar-journey-indicator.before-journey {
+    background: var(--vmware-red);
+    color: white;
+}
+
+.menubar-journey-indicator.after-journey {
+    background: var(--vnli-primary);
+    color: white;
+}
+
+.menubar-center {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.menubar-progress {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 200px;
+}
+
+.menubar-progress-bar {
+    width: 100%;
+    height: 4px;
+    background: var(--border-color);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.menubar-progress-fill {
+    height: 100%;
+    background: var(--vmware-blue);
+    width: 0%;
+    transition: width 0.5s ease;
+    border-radius: 2px;
+}
+
+.menubar-step-counter {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.menubar-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.menubar-timestamp {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--vmware-orange);
+    padding: 0.5rem 1rem;
+    background: rgba(255, 107, 53, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 107, 53, 0.3);
+}
+
 /* Screen Container */
 #app {
     width: 100vw;
@@ -63,6 +159,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* Adjust screen content when menubar is visible */
+.screen:not(#landing) {
+    padding-top: calc(70px + 2rem);
 }
 
 .screen.active {
